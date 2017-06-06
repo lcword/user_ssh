@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-5-9 15:15:04 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+	<!-- name:类的全名；table：数据库的表名 -->
+    <class name="com.user.model.User" table="T_USER">
+    	<!-- id标签：表示主键；
+    		 name：属性名；
+    		 type：类型，可以写Java，hibernate，标准数据库的类型
+    		 column：对应在数据库中的类型
+    		 generator中class：通常使用assigned（手动给），native（自动增长） -->
+        <id name="id" type="java.lang.String">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <!-- property标签：普通属性 -->
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <property name="sex" type="int">
+            <column name="SEX" />
+        </property>
+        <property name="age" type="int">
+            <column name="AGE" />
+        </property>
+        <property name="pictureName" type="java.lang.String">
+            <column name="PICTURE_NAME" />
+        </property>
+    </class>
+</hibernate-mapping>

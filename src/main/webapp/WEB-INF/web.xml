@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>4-user_manager_v1.1</display-name>
+
+	<welcome-file-list>
+		<welcome-file>login</welcome-file>
+	</welcome-file-list>
+
+	<filter>
+		<filter-name>LoginFilter</filter-name>
+		<filter-class>com.user.filter.LoginFilter</filter-class>
+		<init-param>
+			<param-name>noURI</param-name>
+			<param-value>css;js;login;login.jsp;jpg;png</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- springmvc -->
+	<servlet>
+		<servlet-name>dispathServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+		<!-- 默认DispatcherServlet会加载WEB-INF/[DispatcherServlet的Servlet名字]-servlet.xml配置文件。 
+			如:dispathServlet-servlet.xml -->
+		<!-- 指定spring配置文件在classpath目录下 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring-dispathcher-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>dispathServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- spring监听器 加载spring核心配置文件 默认是在: /WEB-INF/applicationContext.xml -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- 自已指定加载配置文件 spring_core.xml -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring_core.xml</param-value>
+	</context-param>
+
+</web-app>
